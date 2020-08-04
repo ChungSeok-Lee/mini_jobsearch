@@ -20,7 +20,7 @@ driver.implicitly_wait(3)
 
 # 크롤링 대상 사이트
 df = pd.read_csv('./File/code_table.csv')
-for cate_num in range(3):  #len(df)
+for cate_num in range(len(df)):  #len(df)
     Detail_NM = df['Name'][cate_num]
     jobsection_url = 'https://www.wanted.co.kr/wdlist/'+str(df['Code'][cate_num])+'?country=kr&job_sort=job.latest_order&years=-1&locations=all' #code_table을 참고하여 url
     driver.get(jobsection_url)
@@ -75,7 +75,7 @@ for cate_num in range(3):  #len(df)
     # 저장한 datalst를 MongoDB에 저장
     #Docker로 띄운 원격 Mongodb server로 접속
     client = MongoClient('mongodb://172.17.0.2:27017/')
-    jobdb = client.job_service
-    res = jobdb.key.insert_many(datalst)
+    jobdb = client.job_opening
+    res = jobdb.opening_data.insert_many(datalst)
 
 
