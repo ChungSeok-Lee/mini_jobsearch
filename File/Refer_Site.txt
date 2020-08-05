@@ -1,0 +1,5 @@
+1. 채용공고 자연어 처리 참고
+https://wikidocs.net/21667
+
+2. django Web 설정
+https://tutorial.djangogirls.org/ko/django_start_project/
