@@ -6,3 +6,7 @@ https://blog.naver.com/bigdata-pro/221874252321 - 자연어 처리 기본 프로
 
 2. django Web 설정
 https://tutorial.djangogirls.org/ko/django_start_project/
+
+
+3. 워드클라우드 설정
+https://lovit.github.io/nlp/2018/04/17/word_cloud/
