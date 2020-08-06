@@ -1,5 +1,4 @@
 from pymongo import MongoClient
-import kss
 import pandas as pd
 # 자연어 전처리 라이브러리 _ pip install konlpy
 from konlpy.tag import Okt # 오류가 난다면 jdk(java 확인해볼 것)
@@ -87,9 +86,12 @@ def word_preprocessing(D_cate):
   for txt in t_result:
     if len(txt) > 1:
       fin_result.append(txt)
-  result_ = Counter(fin_result) #글자 빈도수 카운트
-  for key, value in dict(result_).items(): #빈도수 10 미만 단어 삭제
-    if value < 10 :
-      del result_[key]
 
-  return result_
+  return fin_result
+  # 
+  # result_ = Counter(fin_result) #글자 빈도수 카운트
+  # for key, value in dict(result_).items(): #빈도수 10 미만 단어 삭제
+    # if value < 10 :
+      # del result_[key]
+  #
+  # return result_

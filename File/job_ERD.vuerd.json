@@ -1,0 +1,278 @@
+{
+  "canvas": {
+    "width": 2000,
+    "height": 2000,
+    "scrollTop": 1,
+    "scrollLeft": 0,
+    "show": {
+      "tableComment": true,
+      "columnComment": true,
+      "columnDataType": true,
+      "columnDefault": true,
+      "columnAutoIncrement": true,
+      "columnPrimaryKey": true,
+      "columnUnique": true,
+      "columnNotNull": true,
+      "relationship": true
+    },
+    "database": "MariaDB",
+    "databaseName": "",
+    "canvasType": "SQL",
+    "language": "GraphQL",
+    "tableCase": "pascalCase",
+    "columnCase": "camelCase",
+    "setting": {
+      "relationshipDataTypeSync": true,
+      "columnOrder": [
+        "columnName",
+        "columnDataType",
+        "columnNotNull",
+        "columnUnique",
+        "columnAutoIncrement",
+        "columnDefault",
+        "columnComment"
+      ]
+    }
+  },
+  "table": {
+    "tables": [
+      {
+        "name": "Job_section_Code",
+        "comment": "",
+        "columns": [
+          {
+            "name": "Code",
+            "comment": "",
+            "dataType": "real",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "052b2f0e-8ecf-f0a4-2ab8-cddf4daa1021"
+          },
+          {
+            "name": "Section_NM",
+            "comment": "",
+            "dataType": "text",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 75,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "7b7ff8b5-2a26-bcd6-b5a3-42836c6cdc17"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 194,
+          "top": 122,
+          "zIndex": 64,
+          "widthName": 115,
+          "widthComment": 60
+        },
+        "id": "2a241e1f-c424-2187-f77f-c0eceaec5343"
+      },
+      {
+        "name": "Job_KeyWord",
+        "comment": "",
+        "columns": [
+          {
+            "name": "Code",
+            "comment": "",
+            "dataType": "real",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "c4f4e571-a3d7-a7a7-a0eb-a9def8c2b577"
+          },
+          {
+            "name": "Word",
+            "comment": "",
+            "dataType": "TEXT",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "8343e230-f637-401d-e784-f9776db6e276"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 197,
+          "top": 427,
+          "zIndex": 60,
+          "widthName": 87,
+          "widthComment": 60
+        },
+        "id": "18479837-b556-7cac-31bb-57d58631662a"
+      },
+      {
+        "name": "Job_Openning",
+        "comment": "",
+        "columns": [
+          {
+            "name": "Code",
+            "comment": "",
+            "dataType": "real",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "55cdef8d-87c4-3c74-8cc0-54b8ff280057"
+          },
+          {
+            "name": "openning_url",
+            "comment": "",
+            "dataType": "TEXT",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 84,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "575f1bfd-8ab0-cba9-6cd1-d18310623240"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 872,
+          "top": 122,
+          "zIndex": 68,
+          "widthName": 92,
+          "widthComment": 60
+        },
+        "id": "2a623a24-fbfb-0120-cbdd-e748540b64b5"
+      }
+    ],
+    "indexes": []
+  },
+  "memo": {
+    "memos": []
+  },
+  "relationship": {
+    "relationships": [
+      {
+        "identification": false,
+        "start": {
+          "tableId": "2a241e1f-c424-2187-f77f-c0eceaec5343",
+          "columnIds": [
+            "052b2f0e-8ecf-f0a4-2ab8-cddf4daa1021"
+          ],
+          "x": 398.5,
+          "y": 232,
+          "direction": "bottom"
+        },
+        "end": {
+          "tableId": "18479837-b556-7cac-31bb-57d58631662a",
+          "columnIds": [
+            "c4f4e571-a3d7-a7a7-a0eb-a9def8c2b577"
+          ],
+          "x": 394,
+          "y": 427,
+          "direction": "top"
+        },
+        "id": "665fe0c0-49b8-730e-b954-81fc5476e85f",
+        "relationshipType": "ZeroOneN"
+      },
+      {
+        "identification": false,
+        "start": {
+          "tableId": "2a241e1f-c424-2187-f77f-c0eceaec5343",
+          "columnIds": [
+            "052b2f0e-8ecf-f0a4-2ab8-cddf4daa1021"
+          ],
+          "x": 603,
+          "y": 177,
+          "direction": "right"
+        },
+        "end": {
+          "tableId": "2a623a24-fbfb-0120-cbdd-e748540b64b5",
+          "columnIds": [
+            "55cdef8d-87c4-3c74-8cc0-54b8ff280057"
+          ],
+          "x": 872,
+          "y": 177,
+          "direction": "left"
+        },
+        "id": "db43a2f0-6cf0-9d50-55b8-51ccf116808c",
+        "relationshipType": "ZeroOneN"
+      }
+    ]
+  }
+}
