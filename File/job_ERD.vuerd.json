@@ -2,8 +2,8 @@
   "canvas": {
     "width": 2000,
     "height": 2000,
-    "scrollTop": 2,
-    "scrollLeft": 0,
+    "scrollTop": 0,
+    "scrollLeft": 2,
     "show": {
       "tableComment": true,
       "columnComment": true,
@@ -17,7 +17,7 @@
     },
     "database": "MariaDB",
     "databaseName": "",
-    "canvasType": "SQL",
+    "canvasType": "ERD",
     "language": "GraphQL",
     "tableCase": "pascalCase",
     "columnCase": "camelCase",
@@ -196,9 +196,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 463,
-          "top": 360,
-          "zIndex": 107,
+          "left": 474,
+          "top": 359,
+          "zIndex": 112,
           "widthName": 87,
           "widthComment": 60
         },
@@ -256,10 +256,10 @@
           }
         ],
         "ui": {
-          "active": false,
-          "left": 789,
+          "active": true,
+          "left": 815,
           "top": 142,
-          "zIndex": 106,
+          "zIndex": 113,
           "widthName": 92,
           "widthComment": 60
         },
@@ -289,8 +289,8 @@
           "columnIds": [
             "c4f4e571-a3d7-a7a7-a0eb-a9def8c2b577"
           ],
-          "x": 463,
-          "y": 415,
+          "x": 474,
+          "y": 414,
           "direction": "left"
         },
         "id": "665fe0c0-49b8-730e-b954-81fc5476e85f",
@@ -312,7 +312,7 @@
           "columnIds": [
             "55cdef8d-87c4-3c74-8cc0-54b8ff280057"
           ],
-          "x": 789,
+          "x": 815,
           "y": 197,
           "direction": "left"
         },
