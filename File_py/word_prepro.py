@@ -10,6 +10,8 @@ from nltk.corpus import stopwords
 # nltk.download('punkt')
 # nltk.download('stopwords')
 from collections import Counter # 리스트의 글자 수 카운트
+import re
+from word_prepro_dele_kor import del_k
 
 
 def word_preprocessing(D_cate):
@@ -66,32 +68,31 @@ def word_preprocessing(D_cate):
     else:
       o_wordlst.append(testword)
 
-  # _영어: General 불용어 삭제 & 뒤에 붙은 한글조사 삭제
+  # _영어: General 불용어 삭제 & 뒤에 붙은 한글 삭제 _ ['시스템', '경력', '개발', '기반'] 등 앞에 특정 단어만 가지고 충분히 필요역량이 무엇인지 유추가능하여 삭제
   result= list()
   for txt in o_wordlst:
     if txt not in stop_words:
       result.append(txt)
-  stop_words_k = ['은', '는', '이', '가', '에', '의', '을','를', '등', '으로', '로', '과', '와'] #영단어 뒤에 붙을 한글 조사 불용어 리스트
   result_e = list()
   for word in result:
-    for letter in word:
-      if letter in stop_words_k:
-        word = word.replace(letter,'')
-    result_e.append(word)
+    trslt = del_k(word)
+    if type(trslt) is list:
+      for t_word in trslt:
+        if ord('a') <= ord(t_word.lower()[0]) <= ord('z'):
+          result_e.append(t_word.upper()) #string.upper 영어 모두 대문자로 통일
+    else:
+      result_e.append(trslt.upper())
 
   ## SECTION __ 영어 + 한글 | 단어장 합치기 ##
   t_result = result_k+ result_e
 
   fin_result = list()
   for txt in t_result:
-    if len(txt) > 1:
+    if '/' in txt:  # 최종 단어 중에 /로 구분되어 있는 단어들 검색
+      for tttxt in txt.split('/'):  # /로 구분되어 있는 단어 split하여 각각 fin_result에 추가
+        if len(tttxt) >1:
+          fin_result.append(tttxt)
+    elif len(txt) > 1:
       fin_result.append(txt)
 
   return fin_result
-  # 
-  # result_ = Counter(fin_result) #글자 빈도수 카운트
-  # for key, value in dict(result_).items(): #빈도수 10 미만 단어 삭제
-    # if value < 10 :
-      # del result_[key]
-  #
-  # return result_
