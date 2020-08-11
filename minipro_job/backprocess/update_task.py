@@ -48,7 +48,7 @@ def task_crawling(schedule= timedelta(minutes=20), repeat=60):
     #-- 크롤링 대상 사이트 선언
     baseURL = 'https://www.wanted.co.kr/wdlist/'
     datalst = list()
-    for idx in range(1): #len(codedf)
+    for idx in range(len(codedf)): #len(codedf)
         if codedf.iloc[idx][0] == codedf.iloc[idx][2]:
             URL = baseURL+str(codedf.iloc[idx][0])
         else:

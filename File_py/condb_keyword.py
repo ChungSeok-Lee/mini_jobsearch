@@ -22,7 +22,7 @@ df = df[['Name', 'Code']]
 db = pymysql.connect(host='localhost', port=3306, user= 'lee', password='lcs', db='job', charset='utf8', autocommit= True)
 cursor = db.cursor(pymysql.cursors.DictCursor)
 
-for idx in range(1):   #len(df)
+for idx in range(len(df)):   #len(df)
     s_name = df['Name'][idx]
     temp = df['Code'][idx]
     s_code = str(temp).split('/')[1]
