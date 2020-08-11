@@ -113,6 +113,4 @@ def task_crawling(schedule= timedelta(minutes=20), repeat=60):
                 print('Updated!', data)
                 datalst.append(data)
     
-    # mydb.opening_data.insert_many(datalst)
-    tdf = pd.DataFrame(datalst)
-    tdf.to_csv('./tempdf.csv', index=False)
+    mydb.opening_data.insert_many(datalst)
