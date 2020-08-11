@@ -4,6 +4,9 @@ https://iostream.tistory.com/144 - 한국어 형태소 분석기 성능 비교
 http://www.engear.net/wp/%ED%95%9C%EA%B8%80-%ED%98%95%ED%83%9C%EC%86%8C-%EB%B6%84%EC%84%9D%EA%B8%B0-%EB%B9%84%EA%B5%90/ - 한국어 형태소 분석기 성능 비교2
 https://blog.naver.com/bigdata-pro/221874252321 - 자연어 처리 기본 프로세스 
 
+1-1. Text preprocessing & Regular Expression
+https://data-newbie.tistory.com/206
+
 2. django Web 설정
 https://tutorial.djangogirls.org/ko/django_start_project/
 
