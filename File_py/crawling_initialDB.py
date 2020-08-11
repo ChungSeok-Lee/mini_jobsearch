@@ -47,7 +47,7 @@ for cate_num in range(len(df)):  #len(df)
 
 
     # 크롤링 대상 elements
-    page_len = len(driver.find_elements_by_class_name('_3D4OeuZHyGXN7wwibRM5BJ'))
+    page_len = len(driver.find_elements_by_class_name('_3D4OeuZHyGXN7wwibRM5BJ')) #채용공고 한 개 영역
     # 저장 요소들 lst 변수 선언
     datalst = list()
 

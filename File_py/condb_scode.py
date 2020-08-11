@@ -17,11 +17,12 @@ for idx in range(len(df)):
         codecate = df['Category_Code'][idx]
         cate = df['Category'][idx]
         #커서 설정 
-        cursor.execute("insert into Job_SectionCode values ('"+str(code)+"', '"+str(s_name)+"', '"+str(codecate)+"', '"+str(cate)+"');")
+        query = "INSERT INTO Job_SectionCode VALUES (%s, %s, %s, %s)"
+        cursor.execute(query,(str(code), str(s_name), str(codecate), str(cate))
     else:
         s_name = df['Name'][idx]
         cate_code = df['Category_Code'][idx]
-        cursor.execute("insert into Job_SectionCode values ('"+str(cate_code)+"', '"+str(s_name)+"', '"+str(cate_code)+"', '"+str(s_name)+"');")
+        cursor.execute(query,(str(codecate), str(cate), str(codecate), str(cate))
 
 
 db.close()
