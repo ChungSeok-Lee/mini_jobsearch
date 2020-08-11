@@ -42,10 +42,13 @@ mycol = mydb["opening_data"]
 
 
 @background()
-def task_crawling(schedule= 10, repeat=60):
+# MongoDB에 저장할 요소들 담아둘 lst 변수 선언
+
+def task_crawling(schedule= timedelta(minutes=20), repeat=60):
     #-- 크롤링 대상 사이트 선언
     baseURL = 'https://www.wanted.co.kr/wdlist/'
-    for idx in range(len(codedf)):
+    datalst = list()
+    for idx in range(1): #len(codedf)
         if codedf.iloc[idx][0] == codedf.iloc[idx][2]:
             URL = baseURL+str(codedf.iloc[idx][0])
         else:
@@ -74,13 +77,13 @@ def task_crawling(schedule= 10, repeat=60):
             
         # 크롤링 대상 elements
         page_len = len(driver.find_elements_by_class_name('_3D4OeuZHyGXN7wwibRM5BJ')) #채용공고 한 개 영역
-        # MongoDB에 저장할 요소들 담아둘 lst 변수 선언
-        datalst = list()
+
         #새로운 크롬드라이버 선언
         driver2 = webdriver.Chrome(path)
         driver2.implicitly_wait(3)
         #MongoDB 연결하여 같은 직군의 채용공고 호출
         tlst = mycol.find({"Detail_Category": codedf.iloc[idx][1]})
+
         templst = []
         for x in tlst:
             templst.append(x)
@@ -95,17 +98,21 @@ def task_crawling(schedule= 10, repeat=60):
             opening_position_nm = opening.get_attribute('data-position-name')
             
             #몽고DB에 존재하는 채용공고와 일치하면 Pass
-            for dbnum in range(len(opendf)):
-                if opening_company_nm == opendf.iloc[dbnum]['Company_NM'] and opening_position_nm == opendf.iloc[dbnum]['Position_NM']:
-                    pass
-                else:
-                    #채용 공고 상세 진입
-                    driver2.get(opening_url)
-                    maintask  = driver2.find_element_by_xpath('//*[@id="__next"]/div/div[3]/div[1]/div[1]/div[1]/div[2]/section[1]/p[2]/span').text
-                    qual = driver2.find_element_by_xpath('//*[@id="__next"]/div/div[3]/div[1]/div[1]/div[1]/div[2]/section[1]/p[3]/span').text
-                    qual2 = driver2.find_element_by_xpath('//*[@id="__next"]/div/div[3]/div[1]/div[1]/div[1]/div[2]/section[1]/p[4]/span').text
+            tester = mycol.find({"Company_NM": opening_company_nm, 'Position_NM': opening_position_nm})
+            testerlst = [x for x in tester]
+            if len(testerlst) >= 1:
+                pass
+            else:
+                #채용 공고 상세 진입
+                driver2.get(opening_url)
+                maintask  = driver2.find_element_by_xpath('//*[@id="__next"]/div/div[3]/div[1]/div[1]/div[1]/div[2]/section[1]/p[2]/span').text
+                qual = driver2.find_element_by_xpath('//*[@id="__next"]/div/div[3]/div[1]/div[1]/div[1]/div[2]/section[1]/p[3]/span').text
+                qual2 = driver2.find_element_by_xpath('//*[@id="__next"]/div/div[3]/div[1]/div[1]/div[1]/div[2]/section[1]/p[4]/span').text
             
                 data =  {"Company_NM": opening_company_nm, 'Detail_Category': Detail_NM,'Position_NM':opening_position_nm, 'URL':opening_url, 'MainTask': maintask, 'Qual': qual, 'Qual2': qual2}
+                print('Updated!', data)
                 datalst.append(data)
     
-    mydb.opening_data.insert_many(datalst)
+    # mydb.opening_data.insert_many(datalst)
+    tdf = pd.DataFrame(datalst)
+    tdf.to_csv('./tempdf.csv', index=False)
