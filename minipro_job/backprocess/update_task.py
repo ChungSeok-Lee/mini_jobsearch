@@ -108,8 +108,10 @@ def task_crawling(schedule= timedelta(minutes=20), repeat=60):
                 maintask  = driver2.find_element_by_xpath('//*[@id="__next"]/div/div[3]/div[1]/div[1]/div[1]/div[2]/section[1]/p[2]/span').text
                 qual = driver2.find_element_by_xpath('//*[@id="__next"]/div/div[3]/div[1]/div[1]/div[1]/div[2]/section[1]/p[3]/span').text
                 qual2 = driver2.find_element_by_xpath('//*[@id="__next"]/div/div[3]/div[1]/div[1]/div[1]/div[2]/section[1]/p[4]/span').text
-            
-                data =  {"Company_NM": opening_company_nm, 'Detail_Category': Detail_NM,'Position_NM':opening_position_nm, 'URL':opening_url, 'MainTask': maintask, 'Qual': qual, 'Qual2': qual2}
+                
+                time_tuple = time.localtime()
+                time_str = time.strftime("%m/%d/%Y, %H:%M:%S", time_tuple)
+                data =  {"Company_NM": opening_company_nm, 'Detail_Category': Detail_NM,'Position_NM':opening_position_nm, 'URL':opening_url, 'MainTask': maintask, 'Qual': qual, 'Qual2': qual2, 'Time': time_str}
                 print('Updated!', data)
                 datalst.append(data)
     
