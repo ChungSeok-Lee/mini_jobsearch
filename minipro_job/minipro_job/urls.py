@@ -1,4 +1,6 @@
 from backprocess.update_task import task_crawling
+from django.urls import path, include
+
 """minipro_job URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -19,6 +21,7 @@ from django.urls import path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('website.urls')),
 ]
 
 task_crawling()

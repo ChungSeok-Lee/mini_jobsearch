@@ -24,7 +24,7 @@ cursor = db.cursor(pymysql.cursors.DictCursor)
 
 query = "INSERT INTO Job_KeyWord VALUES (%s, %s)"
 
-for idx in range(1):   #len(df)
+for idx in range(len(df)):   #len(df)
     s_name = df['Name'][idx]
     temp = df['Code'][idx]
     s_code = str(temp).split('/')[1]

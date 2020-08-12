@@ -44,7 +44,7 @@ mycol = mydb["opening_data"]
 @background()
 # MongoDB에 저장할 요소들 담아둘 lst 변수 선언
 
-def task_crawling(schedule= timedelta(minutes=20), repeat=60):
+def task_crawling(schedule= 10, repeat=60):
     #-- 크롤링 대상 사이트 선언
     baseURL = 'https://www.wanted.co.kr/wdlist/'
     datalst = list()
