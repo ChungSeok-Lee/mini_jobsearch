@@ -19,15 +19,17 @@ from word_prepro import word_preprocessing # 단어의 나열 리스트로 반�
 df = pd.read_csv('../File/code_table.csv')
 df = df[['Name', 'Code']]
 
-db = pymysql.connect(host='localhost', port=3306, user= 'lee', password='lcs', db='job', charset='utf8', autocommit= True)
+db = pymysql.connect(host='localhost', port=3306, user= 'lee', password='1234', db='job', charset='utf8', autocommit= True)
 cursor = db.cursor(pymysql.cursors.DictCursor)
 
-for idx in range(len(df)):   #len(df)
+query = "INSERT INTO Job_KeyWord VALUES (%s, %s)"
+
+for idx in range(1):   #len(df)
     s_name = df['Name'][idx]
     temp = df['Code'][idx]
     s_code = str(temp).split('/')[1]
     temp_r = word_preprocessing(str(s_name))
     for content in temp_r:
-        cursor.execute("insert into test values ('"+str(s_code)+"', '"+str(content)+"');")
+        cursor.execute(query,(str(s_code), str(content)))
 
 db.close()

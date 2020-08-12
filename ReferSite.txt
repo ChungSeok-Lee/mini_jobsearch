@@ -8,7 +8,8 @@ https://blog.naver.com/bigdata-pro/221874252321 - 자연어 처리 기본 프로
 https://data-newbie.tistory.com/206
 
 2. django Web 설정
-https://tutorial.djangogirls.org/ko/django_start_project/
+ - https://tutorial.djangogirls.org/ko/django_start_project/
+ - https://django-background-tasks.readthedocs.io/en/latest/ __ django backgrond-tasks
 
 
 3. 워드클라우드 설정

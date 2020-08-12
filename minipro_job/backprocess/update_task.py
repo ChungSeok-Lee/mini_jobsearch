@@ -111,7 +111,7 @@ def task_crawling(schedule= timedelta(minutes=20), repeat=60):
                 
                 time_tuple = time.localtime()
                 time_str = time.strftime("%m/%d/%Y, %H:%M:%S", time_tuple)
-                data =  {"Company_NM": opening_company_nm, 'Detail_Category': Detail_NM,'Position_NM':opening_position_nm, 'URL':opening_url, 'MainTask': maintask, 'Qual': qual, 'Qual2': qual2, 'Time': time_str}
+                data =  {"Company_NM": opening_company_nm, 'Detail_Category': Detail_NM,'Position_NM':opening_position_nm, 'URL':opening_url, 'MainTask': maintask, 'Qual': qual, 'Qual2': qual2, 'Date': time_str.split(', ')[0], 'Time': time_str}
                 print('Updated!', data)
                 datalst.append(data)
     
