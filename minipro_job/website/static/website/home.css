@@ -1,0 +1,13 @@
+h1 {
+    text-align: center;
+    color: #303030;
+}
+
+.search-bar {
+    width: 700px;
+}
+
+.submit_buttom {
+    width: 100px;
+    text-align: center;
+}

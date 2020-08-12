@@ -1,12 +1,13 @@
 import pymysql
 import pandas as pd 
-from wordcloud import WordCloud 
+from wordcloud import WordCloud
 from matplotlib import pyplot as plt
 import matplotlib as mpl
-import matplotlib.font_manager as fm 
+import matplotlib.font_manager as fm
+import time 
 
 #-- 워드클라우드를 위한 글꼴 설정 
-fontpath = './File/S-Core_Dream_OTF/SCDream4.otf'
+fontpath = '../File/S-Core_Dream_OTF/SCDream4.otf'
 font= fm.FontProperties(fname = fontpath, size=9)
 mpl.font_manager._rebuild()
 
@@ -26,17 +27,24 @@ for idx in range(len(rows)):
     worddict[rows[idx]['Word']] = rows[idx]['count(Word)'] 
 
 #-- 워드클라우드 설정
-wordcolud = WordCloud(
+wordcloud = WordCloud(
     font_path = fontpath,
     width = 1200,
     height = 800,
     background_color='white'
 )
+
+
 #-- 워드클라우드 출력
-# 
-pic_array = wordcolud.generate_from_frequencies(worddict).to_array()
+pic_array = wordcloud.generate_from_frequencies(worddict).to_array()
 fig = plt.figure(figsize=(12,12))
 plt.imshow(pic_array, interpolation='bilinear')
 plt.axis('off')
-plt.show()
+
+
+#-- 워드클라우드 저장
+time_tuple = time.localtime()
+time_str = time.strftime("%m/%d/%Y, %H:%M:%S", time_tuple)
+# fig.savefig('./static/wordcloud_img/wci_%s_%s.png' % (str(time_str.split(', ')[0]), str(code)))
+fig.savefig('./static/wordcloud_img/img_%s_%s.png' % (str(code), str(time_str.split(', ')[0].replace('/', ''))))
 
