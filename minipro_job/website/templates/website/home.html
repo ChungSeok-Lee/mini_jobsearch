@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -23,6 +24,7 @@
                 <label class="input-group-text" for="inputGroupSelect01">Select</label>
             </div>
             <select class="custom-select" id="inputGroupSelect01" name='select'>
+                <option value="0">선택해주세요</option>
                 <option value="1">개발_서버 개발자</option>
                 <option value="2">개발_웹 개발자</option>
                 <option value="3">개발_프론트엔드 개발자</option>
@@ -115,17 +117,11 @@
             <input type="submit" value="Submit" >
         </div>
     </form>
-    {% block content %}
-    {% endblock %}
-    <div>
-        select: {{select}}
+
+    <div class = "mx-auto wordcloud">
+        <img src="{% static 'show/showimage.png' %}" class="rounded mx-auto d-block" >
     </div>
 
-    <div>
-        {% if result == 1 %}
-            <img src="{% static 'show/showimage.png' %}" alt="">
-        {& endif %}
-    </div>
 </body>
 
 </html>

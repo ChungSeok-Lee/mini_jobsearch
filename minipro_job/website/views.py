@@ -8,9 +8,7 @@ def home(request):
     if 'select' in data.keys():
         scode = change(data['select'])
         make_wordcloud(scode)
-        data['result'] = 1
     return render(request, 'website/home.html', context=data)
-
 
 
 def change(value):

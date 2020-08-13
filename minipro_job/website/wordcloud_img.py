@@ -6,11 +6,16 @@ import matplotlib as mpl
 import matplotlib.font_manager as fm
 import time 
 
+
 def make_wordcloud(code):
     #-- 워드클라우드를 위한 글꼴 설정 
-    fontpath = '../File/S-Core_Dream_OTF/SCDream4.otf'
-    font= fm.FontProperties(fname = fontpath, size=9)
-    mpl.font_manager._rebuild()
+    # fontpath = './static/Font/SCDream4.otf'
+    # font= fm.FontProperties(fname = fontpath).get_name()
+    # mpl.font_manager._rebuild()
+    # plt.rcParams["font.family"]=font
+    font_fname = 'website/static/Font/SCDream4.otf'
+    font_family = fm.FontProperties(fname= font_fname).get_name()
+    plt.rcParams["font.family"] = font_family
 
 
     #-- 워드클라우드 만든 기본 단어 호출 위한 DB 연결
@@ -28,8 +33,8 @@ def make_wordcloud(code):
         worddict[rows[idx]['Word']] = rows[idx]['count(Word)'] 
 
     #-- 워드클라우드 설정
-    wordcloud = WordCloud(
-        font_path = fontpath,
+    wordcloud_ = WordCloud(
+        font_path = font_fname,
         width = 1200,
         height = 800,
         background_color='white'
@@ -37,8 +42,9 @@ def make_wordcloud(code):
 
 
     #-- 워드클라우드 출력
-    pic_array = wordcloud.generate_from_frequencies(worddict).to_array()
-    fig = plt.figure(figsize=(12,12))
+    words = wordcloud_.generate_from_frequencies(worddict)
+    pic_array = words.to_array()
+    fig = plt.figure(figsize=(12,8))
     plt.imshow(pic_array, interpolation='bilinear')
     plt.axis('off')
 
@@ -46,6 +52,7 @@ def make_wordcloud(code):
     #-- 워드클라우드 저장
     time_tuple = time.localtime()
     time_str = time.strftime("%m/%d/%Y, %H:%M:%S", time_tuple)
-    # fig.savefig('./static/wordcloud_img/wci_%s_%s.png' % (str(time_str.split(', ')[0]), str(code)))
-    fig.savefig('./static/wordcloud_img/img_%s_%s.png' % (str(code), str(time_str.split(', ')[0].replace('/', ''))))
-    fig.savefig('./static/show/showimage.png')
+    fig.savefig('website/static/wordcloud_img/img_%s_%s.png' % (str(code), str(time_str.split(', ')[0].replace('/', ''))))
+    fig.savefig('website/static/show/showimage.png')
+    
+    return pic_array
