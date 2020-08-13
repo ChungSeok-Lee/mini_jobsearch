@@ -11,7 +11,7 @@ chrome_options.add_argument("--headless")
 chrome_options.add_argument("disable~~")
 
 # 크롬드라이버 경로
-path = '/home/sundoosdedu/다운로드/chromedriver'
+path = 'File/chromedriver'
 # 선언
 driver  = webdriver.Chrome(path)
 

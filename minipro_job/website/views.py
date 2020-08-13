@@ -1,6 +1,8 @@
 from django.shortcuts import render
 import pandas as pd 
 from .wordcloud_img import make_wordcloud
+from .updater import task_crawling
+
 
 # Create your views here.
 def home(request):
