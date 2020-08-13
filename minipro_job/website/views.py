@@ -1,14 +1,14 @@
 from django.shortcuts import render
 import pandas as pd 
-from wordcloud_img import make_wordcloud
+from .wordcloud_img import make_wordcloud
 
 # Create your views here.
 def home(request):
     data = request.GET.copy()
     if 'select' in data.keys():
         scode = change(data['select'])
-        data['result'] = make_wordcloud(scode)
-
+        make_wordcloud(scode)
+        data['result'] = 1
     return render(request, 'website/home.html', context=data)
 
 

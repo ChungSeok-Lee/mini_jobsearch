@@ -119,11 +119,12 @@
     {% endblock %}
     <div>
         select: {{select}}
-        result: {{result}}
     </div>
 
     <div>
-        <!-- <img src="{% static 'show/showimage.png' %}" alt=""> -->
+        {% if result == 1 %}
+            <img src="{% static 'show/showimage.png' %}" alt="">
+        {& endif %}
     </div>
 </body>
 
