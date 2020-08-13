@@ -25,11 +25,18 @@ cursor = db.cursor(pymysql.cursors.DictCursor)
 query = "INSERT INTO Job_KeyWord VALUES (%s, %s)"
 
 for idx in range(len(df)):   #len(df)
-    s_name = df['Name'][idx]
-    temp = df['Code'][idx]
-    s_code = str(temp).split('/')[1]
-    temp_r = word_preprocessing(str(s_name))
-    for content in temp_r:
-        cursor.execute(query,(str(s_code), str(content)))
+    if '/' in str(df[idx]):
+        s_name = df['Name'][idx]
+        temp = df['Code'][idx]
+        s_code = str(temp).split('/')[1]
+        temp_r = word_preprocessing(str(s_name))
+        for content in temp_r:
+            cursor.execute(query,(str(s_code), str(content)))
+    else:
+        s_name = df['Name'][idx]
+        s_code = df['Code'][idx]
+        temp_r = word_preprocessing(str(s_name))
+        for content in temp_r:
+            cursor.execute(query,(str(s_code), str(content)))
 
 db.close()

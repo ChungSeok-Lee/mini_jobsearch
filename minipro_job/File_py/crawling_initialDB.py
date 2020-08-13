@@ -72,10 +72,10 @@ for cate_num in range(len(df)):  #len(df)
 
 
 
-    # 저장한 datalst를 MongoDB에 저장
-    #Docker로 띄운 원격 Mongodb server로 접속
-    client = MongoClient('mongodb://172.17.0.2:27017/')
-    jobdb = client.job_opening
-    res = jobdb.opening_data.insert_many(datalst)
+    # # 저장한 datalst를 MongoDB에 저장
+    # #Docker로 띄운 원격 Mongodb server로 접속
+    # client = MongoClient('mongodb://172.17.0.2:27017/')
+    # jobdb = client.job_opening
+    # res = jobdb.opening_data.insert_many(datalst)
 
 

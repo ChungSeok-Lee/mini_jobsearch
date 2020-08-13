@@ -48,4 +48,5 @@ def make_wordcloud(code):
     time_str = time.strftime("%m/%d/%Y, %H:%M:%S", time_tuple)
     # fig.savefig('./static/wordcloud_img/wci_%s_%s.png' % (str(time_str.split(', ')[0]), str(code)))
     fig.savefig('./static/wordcloud_img/img_%s_%s.png' % (str(code), str(time_str.split(', ')[0].replace('/', ''))))
-
+    fig.savefig('./static/show/showimage.png')
+    return "{% static 'show/showimage.png' %}"
