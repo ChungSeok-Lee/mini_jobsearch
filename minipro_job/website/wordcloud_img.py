@@ -54,5 +54,6 @@ def make_wordcloud(code):
     time_str = time.strftime("%m/%d/%Y, %H:%M:%S", time_tuple)
     fig.savefig('website/static/wordcloud_img/img_%s_%s.png' % (str(code), str(time_str.split(', ')[0].replace('/', ''))))
     fig.savefig('website/static/show/showimage.png')
-    
-    return pic_array
+    name = str('img_%s_%s.png' % (str(code), str(time_str.split(', ')[0].replace('/', ''))))
+    return name
+

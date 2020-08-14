@@ -8,7 +8,7 @@ import time
 
 from pymongo import MongoClient
 import pymysql
-from pymongo import MongoClient
+
 
 # --예시--#
 # @background()
@@ -19,30 +19,33 @@ from pymongo import MongoClient
 
 # django.setting.py 중 INSTALLED_APPS에 'background_task' 추가
 
-#-- 크롬드라이버 설정 
-chrome_options = Options() #초기화
-chrome_options.add_argument("--headless")
-chrome_options.add_argument("disable~~")
-path = '/home/sundoosdedu/다운로드/chromedriver' # 경로설정
-driver  = webdriver.Chrome(path) # driver 선언
-driver.implicitly_wait(3) # 딜레이 설정
-
-#-- URL 참조 위한 section code DB연결
-mariadb = pymysql.connect(host='localhost', port=3306, user= 'lee', password='1234', db='job', charset='utf8', autocommit= True)
-cursor = mariadb.cursor(pymysql.cursors.DictCursor)
-cursor.execute("select * from Job_SectionCode")
-rows = cursor.fetchall() #데이터 Fetch
-mariadb.close()
-codedf = pd.DataFrame(rows) # 직군별 코드 df
-
-#-- 채용공고를 모아두는 MongoDB 연결
-mongodb = MongoClient('mongodb://172.17.0.2:27017/')
-mydb = mongodb['job_opening']
-mycol = mydb["opening_data"]
-
-# MongoDB에 저장할 요소들 담아둘 lst 변수 선언
 
 def task_crawling(code):
+    #-- 크롬드라이버 설정 
+    chrome_options = Options() #초기화
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("disable~~")
+    path = '/home/sundoosdedu/다운로드/chromedriver' # 경로설정
+    driver  = webdriver.Chrome(path, options= chrome_options) # driver 선언
+    driver.implicitly_wait(3) # 딜레이 설정
+
+    #-- URL 참조 위한 section code DB연결
+    mariadb = pymysql.connect(host='localhost', port=3306, user= 'lee', password='1234', db='job', charset='utf8', autocommit= True)
+    cursor = mariadb.cursor(pymysql.cursors.DictCursor)
+    cursor.execute("select * from Job_SectionCode")
+    rows = cursor.fetchall() #데이터 Fetch
+    mariadb.close()
+    codedf = pd.DataFrame(rows) # 직군별 코드 df
+    Detail_NM = codedf.loc[codedf['Code_s']==code]['Section_NM'].iloc[0]
+    print(Detail_NM)
+
+    #-- 채용공고를 모아두는 MongoDB 연결    
+    mongodb = MongoClient('mongodb://192.168.0.66:27017')
+    mydb = mongodb['job_opening']   
+    mycol = mydb["opening_data"]
+
+    # MongoDB에 저장할 요소들 담아둘 lst 변수 선언
+    datalst=[]
     #-- 크롤링 대상 사이트 선언
     baseURL = 'https://www.wanted.co.kr/wdlist/'
     codeurl = str(code)
@@ -72,15 +75,15 @@ def task_crawling(code):
     page_len = len(driver.find_elements_by_class_name('_3D4OeuZHyGXN7wwibRM5BJ')) #채용공고 한 개 영역
 
     #새로운 크롬드라이버 선언
-    driver2 = webdriver.Chrome(path)
+    driver2 = webdriver.Chrome(path, options= chrome_options)
     driver2.implicitly_wait(3)
     #MongoDB 연결하여 같은 직군의 채용공고 호출
-    tlst = mycol.find({"Detail_Category": code)
+    tlst = mycol.find({"Detail_Category": code})
 
-    templst = []
-    for x in tlst:
-        templst.append(x)
-    opendf = pd.DataFrame(templst) 
+    # templst = []
+    # for x in tlst:
+    #     templst.append(x)
+    # opendf = pd.DataFrame(templst) 
 
     for i in range(page_len):    #page_len = 공고 갯수
         # elements path loop를 통해 각 기본 요소 추출
@@ -91,10 +94,10 @@ def task_crawling(code):
         opening_position_nm = opening.get_attribute('data-position-name')
         
         #몽고DB에 존재하는 채용공고와 일치하면 Pass
-        tester = mycol.find({"Company_NM": opening_company_nm, 'Position_NM': opening_position_nm})
+        tester = mycol.find({"Company_NM": opening_company_nm, 'Position_NM': opening_position_nm, "Detail_Category": Detail_NM})
         testerlst = [x for x in tester]
         if len(testerlst) >= 1:
-            pass
+            continue
         else:
             #채용 공고 상세 진입
             driver2.get(opening_url)
@@ -104,7 +107,16 @@ def task_crawling(code):
             
             time_tuple = time.localtime()
             time_str = time.strftime("%m/%d/%Y, %H:%M:%S", time_tuple)
-            data =  {"Company_NM": opening_company_nm, 'Detail_Category': Detail_NM,'Position_NM':opening_position_nm, 'URL':opening_url, 'MainTask': maintask, 'Qual': qual, 'Qual2': qual2, 'Date': time_str.split(', ')[0], 'Time': time_str}
+            data =  {
+                "Company_NM": opening_company_nm, 
+                'Detail_Category': Detail_NM,
+                'Position_NM':opening_position_nm, 
+                'URL':opening_url, 'MainTask': maintask, 
+                'Qual': qual, 
+                'Qual2': qual2, 
+                'Date': time_str.split(', ')[0], 
+                'Time': time_str
+                }
             print('Updated!', data)
             datalst.append(data)
     

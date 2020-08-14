@@ -1,4 +1,4 @@
-from backprocess.update_task import task_crawling
+#from backprocess.update_task import task_crawling
 from django.urls import path, include
 
 """minipro_job URL Configuration
@@ -24,4 +24,4 @@ urlpatterns = [
     path('', include('website.urls')),
 ]
 
-task_crawling()
+#task_crawling()

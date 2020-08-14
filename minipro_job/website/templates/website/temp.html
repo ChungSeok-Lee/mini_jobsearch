@@ -1,24 +1,18 @@
 {% load static %}
-
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Core Ability</title>
+    <title>Update</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'website/home.css' %}">
 </head>
 
 <body>
-    <div class="mx-auto mt-5">
-        <h1 class="text-center"> HOME</h1>
-    </div>   
-
-
-<div class="mx-auto" style="width: 500px;">
+    <div class="mx-auto" style="width: 500px;">
         <form action='' method="GET">
             <div class="mx-auto mt-5 search-bar input-group mb-3">
                 <div class="input-group-prepend">
@@ -118,27 +112,22 @@
                 <input type="submit" value="Submit" class="float-right">
             </div>
         </form>
-</div>
-
-    <div class = "mx-auto">
-        <img src='static/wordcloud_img/{{ name }}' class="rounded mx-auto d-block" >
     </div>
 
-     {{ name }} 
 
-    <div class = "container-sm">
-        <a href="http://127.0.0.1:8000/update" class="btn btn-primary btn-lg active float-right" role="button" aria-pressed="true">새로고침</a>
+    <div class="mt-5">
+        <div class="d-flex justify-content-center mt-5">
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <h1 class="text-center mt-5"> 업데이트 중 </h1>
     </div>
-    
-    <div class= "mt-5">
-    <p>
-        &nbsp;<br>
-        &nbsp;<br>
-        &nbsp;<br>
-        &nbsp;<br>
-        &nbsp;<br>
-        &nbsp;<br>
-    </p>
+
+    <div class="mt-5 mx-auto" style="width: 500px;">
+        <a href="http://127.0.0.1:8000" class="btn btn-primary btn-lg active mx-auto" role="button" aria-pressed="true"
+            style="width: 500px;">Home</a>
     </div>
 </body>
+
 </html>
